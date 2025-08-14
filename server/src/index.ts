@@ -7,7 +7,6 @@ import { checkEnv, env } from './libs/env-check'
 import { apiRouter } from './routes'
 import connectDB from './libs/db'
 import AppError from './libs/api-error'
-import ServerlessHttp from 'serverless-http'
 
 checkEnv()
 
@@ -21,6 +20,8 @@ app.use(
     credentials: true
   })
 )
+app.options('*', cors())
+
 app.use(morgan('dev'))
 app.use(express.json({ limit: env.REQUEST_BODY_LIMIT || '10kb' }))
 app.use(
@@ -45,5 +46,3 @@ connectDB().then(() => {
     console.log(`✅ Running on port: ${PORT}`)
   })
 })
-
-export default ServerlessHttp(app)

@@ -1,4 +1,4 @@
-import { checkSchema, validationResult } from 'express-validator'
+import { checkSchema, ValidationError, validationResult } from 'express-validator'
 import { verifyJwt } from '~/libs/jwt'
 import { Request, Response, NextFunction } from 'express'
 import { TokenPayload, TokenType } from '~/types/token'
@@ -24,10 +24,9 @@ export const accessTokenValidator = checkSchema({
 
 export const validateRequest = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req)
-  console.log(errors)
   if (!errors.isEmpty()) {
-    errors.array().map((err) => {
-      if (err.path === 'authorization') {
+    errors.array().map((err: ValidationError) => {
+      if (err.type === 'field' && err.path === 'authorization') {
         if (err.msg === 'jwt expired') {
           res.status(401).json({
             message: 'Token expired'

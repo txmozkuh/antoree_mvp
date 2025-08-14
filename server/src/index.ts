@@ -20,7 +20,6 @@ app.use(
     credentials: true
   })
 )
-app.options('*', cors())
 
 app.use(morgan('dev'))
 app.use(express.json({ limit: env.REQUEST_BODY_LIMIT || '10kb' }))
@@ -46,3 +45,5 @@ connectDB().then(() => {
     console.log(`✅ Running on port: ${PORT}`)
   })
 })
+
+export default app

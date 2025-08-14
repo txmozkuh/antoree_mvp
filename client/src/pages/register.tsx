@@ -21,8 +21,7 @@ export default function Register() {
   const registerMutation = useMutation({
     mutationKey: ['register'],
     mutationFn: (data: RegisterForm) => register(data),
-    onSuccess: (res) => {
-      const userData = res.data
+    onSuccess: () => {
       toast.success('Register Successfully')
       setTimeout(() => navigate('/login'), 1000)
     },

@@ -9,7 +9,7 @@ export const accessTokenValidator = checkSchema({
     in: ['headers'],
     exists: { errorMessage: 'Missing token' },
     custom: {
-      options: async (val, { req }) => {
+      options: async (val: string, { req }) => {
         const access_token = val.split(' ')[1]
         const decode = verifyJwt(access_token) as TokenPayload
         if (decode.tokenType !== TokenType.AccessToken) {

@@ -2,7 +2,7 @@ import { TokenType } from '~/types/token'
 import jwt from 'jsonwebtoken'
 import { env } from './env-check'
 
-const PRIVATE_KEY = env.JWT_SECRET_KEY
+const PRIVATE_KEY = env.JWT_SECRET_KEY || 'thisismyprivatekeyforjwt12313,1.23,12.3'
 
 export const generateJwt = (userId: string, tokenType: TokenType, expiresIn: number) => {
   return jwt.sign(

@@ -52,6 +52,20 @@ Start the server
 ```
 
 
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+FROM CLIENT `.env`
+
+`VITE_API_URL` 
+
+FROM SERVER `.env`
+
+`CLIENT_HOST` `REQUEST_BODY_LIMIT` `RATE_LIMIT_WINDOW_MIN` `RATE_LIMIT_MAX`
+` CLIENT_HOST` `DB_URL` `JWT_SECRET_KEY`
+
+or just create .env and use my default settings
 ## Tech Stack
 
 **Language:** Typescript

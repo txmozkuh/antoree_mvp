@@ -16,7 +16,7 @@ const PORT = Number(env.PORT) || 4000
 app.use(helmet())
 app.use(
   cors({
-    origin: env.CLIENT_HOST,
+    origin: env.CLIENT_HOST || 'http://localhost:3000',
     credentials: true
   })
 )

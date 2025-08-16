@@ -1,4 +1,5 @@
 import AuthorizedContainer from '@/components/layout/authorized-container'
+import Loading from '@/components/layout/loading'
 import { useAuthStore } from '@/store/use-auth'
 import { lazy, Suspense } from 'react'
 import { Navigate, Outlet, useRoutes } from 'react-router'
@@ -12,7 +13,7 @@ const PostDetail = lazy(() => import('@/pages/post-detail'))
 const AuthorizedRoute = () => {
   const { isAuthorized, user } = useAuthStore()
   return isAuthorized && user ? (
-    <Suspense fallback={<div>Loading</div>}>
+    <Suspense fallback={<Loading />}>
       <AuthorizedContainer>
         <Outlet />
       </AuthorizedContainer>
@@ -26,7 +27,7 @@ const AuthorizedRoute = () => {
 const UnAuthorizedRoute = () => {
   const { isAuthorized, user } = useAuthStore()
   return !isAuthorized || !user ? (
-    <Suspense fallback={<div>Loading</div>}>
+    <Suspense fallback={<Loading />}>
       <Outlet />
     </Suspense>
   ) : (
